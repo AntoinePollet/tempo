@@ -1,37 +1,17 @@
 <script setup lang="ts">
-import { availableLocales, loadLanguageAsync } from '~/modules/i18n'
-
-const { t, locale } = useI18n()
-
-async function toggleLocales() {
-  // change to some real logic
-  const locales = availableLocales
-  const newLocale = locales[(locales.indexOf(locale.value) + 1) % locales.length]
-  await loadLanguageAsync(newLocale)
-  locale.value = newLocale
-}
+const { t } = useI18n()
 </script>
 
 <template>
-  <nav flex="~ gap-4" mt-6 justify-center text-xl>
-    <RouterLink icon-btn to="/" :title="t('button.home')">
-      <div i-carbon-campsite />
-    </RouterLink>
+  <header class="sticky top-0 z-10 border-b border-base-300 bg-base-100/80 backdrop-blur">
+    <div class="mx-auto flex max-w-2xl items-center justify-between px-4 py-3">
+      <RouterLink to="/" class="text-lg font-semibold">
+        {{ t('app.name') }}
+      </RouterLink>
 
-    <button icon-btn :title="t('button.toggle_dark')" @click="toggleDark()">
-      <div i="carbon-sun dark:carbon-moon" />
-    </button>
-
-    <a icon-btn :title="t('button.toggle_langs')" @click="toggleLocales()">
-      <div i-carbon-language />
-    </a>
-
-    <RouterLink icon-btn to="/about" :title="t('button.about')" data-test-id="about">
-      <div i-carbon-dicom-overlay />
-    </RouterLink>
-
-    <a icon-btn rel="noreferrer" href="https://github.com/antfu/vitesse" target="_blank" title="GitHub">
-      <div i-carbon-logo-github />
-    </a>
-  </nav>
+      <RouterLink to="/settings" class="btn btn-ghost btn-sm btn-square" :title="t('action.settings')">
+        <span class="icon-[carbon--settings] size-5" />
+      </RouterLink>
+    </div>
+  </header>
 </template>

@@ -1,14 +1,122 @@
-button:
-  about: À propos
+app:
+  name: Recur
+  tagline: Suivez vos dépenses récurrentes
+action:
   back: Retour
-  go: Essayer
-  home: Accueil
+  settings: Paramètres
   toggle_dark: Basculer en mode sombre
   toggle_langs: Changer de langue
-intro:
-  desc: Exemple d'application Vite
-  dynamic-route: Démo de route dynamique
-  hi: Salut, {name}!
-  aka: Aussi connu sous le nom de
-  whats-your-name: Comment t'appelles-tu ?
+  add: Ajouter
+  cancel: Annuler
+  save: Enregistrer
+  delete: Supprimer
+  confirm: Confirmer
+  pause: Mettre en pause
+  resume: Reprendre
+  cancel_subscription: Annuler l'abonnement
+confirm:
+  delete_title: Supprimer cet abonnement ?
+  delete_body: "{name} sera définitivement supprimé. Cette action est irréversible."
+detail:
+  next_due_dates: Prochaines échéances
+  next_label: Prochaine
+  total_paid_label: Total payé approximatif
+  over_n_months: "sur {n} mois | sur {n} mois"
+home:
+  rollup_per_month: par mois
+  rollup_per_year: par an
+  empty_title: Aucun abonnement
+  empty_subtitle: Ajoutez votre premier abonnement pour commencer.
+  quick_add: Ajout rapide
+  due_soon_count: "{count} abonnement bientôt dû | {count} abonnements bientôt dus"
+  due_in_days: "dans {n} jour | dans {n} jours"
+  due_today: dû aujourd'hui
+  due_tomorrow: dû demain
+  banner_dismiss: Masquer jusqu'à demain
+  show_details: Voir les détails
+  hide_details: Masquer les détails
+  per_month_short: /mois
+install:
+  prompt: Installer Recur
+  hint: Installez l'application pour un accès hors-ligne depuis votre écran d'accueil.
+pwa:
+  update_available: Nouvelle version disponible
+  update_hint: Recharger pour obtenir la dernière version.
+  reload: Recharger
+  later: Plus tard
+  offline_ready: Prêt pour le mode hors-ligne.
+stats:
+  by_category: Dépenses par catégorie
+  top_expensive: Coûts mensuels les plus élevés
+  empty: Ajoutez des abonnements pour voir des statistiques ici.
+row:
+  due_today: Aujourd'hui
+  due_tomorrow: Demain
+  due_in_days: "Dans {n} jour | Dans {n} jours"
+backup:
+  export: Télécharger une sauvegarde
+  export_hint: Enregistre un fichier JSON contenant tous vos abonnements et préférences.
+  import: Restaurer depuis une sauvegarde
+  import_hint: Remplace toutes les données actuelles par le contenu d'un fichier de sauvegarde. Nous téléchargeons automatiquement une copie de sécurité de l'état actuel d'abord.
+  import_error: Impossible de lire la sauvegarde
+  confirm_title: Restaurer depuis cette sauvegarde ?
+  confirm_body: Cela remplacera toutes vos données actuelles. Nous téléchargeons d'abord une copie de sécurité de vos données existantes, au cas où.
+calendar:
+  add_this: Ajouter au calendrier
+  export_all: Exporter tous les abonnements
+  export_all_hint: Génère un fichier .ics contenant chaque abonnement actif avec un rappel 24 heures avant chaque débit. Ouvrez-le pour que votre application de calendrier importe les événements récurrents.
+  remove_all: Supprimer du calendrier
+  remove_all_hint: Génère un fichier de suppression. Importez-le dans la même application de calendrier que celle utilisée à l'ajout.
+  confirm_remove_title: Générer le fichier de suppression ?
+  confirm_remove_body: Cela télécharge un fichier .ics qui, une fois importé dans votre application de calendrier, supprime les événements ajoutés par Recur. Importez-le dans chaque calendrier où vous les avez ajoutés.
+settings:
+  title: Paramètres
+  preferred_currency: Devise préférée
+  preferred_currency_hint: Les nouveaux abonnements utilisent cette devise par défaut.
+  language: Langue
+  banner_threshold: Fenêtre d'alerte
+  banner_threshold_hint: Afficher les abonnements dus dans ce nombre de jours.
+  banner_threshold_days: "{n} jours"
+  show_cancelled: Afficher les abonnements annulés
+  appearance: Apparence
+  data_section: Données
+  calendar_section: Calendrier
+  about: À propos
+  app_version: "Version {version}"
+  currency_change_title: Changer la devise préférée ?
+  currency_change_body: Les montants enregistrés ne seront pas convertis. Les abonnements existants gardent leur valeur numérique mais s'afficheront avec la nouvelle devise. Cela peut ne pas correspondre à ce que vous payez réellement.
+status:
+  active: Actif
+  paused: En pause
+  cancelled: Annulé
+picker:
+  title: Ajouter un abonnement
+  search_placeholder: Cherchez Netflix, Spotify, ChatGPT…
+  no_results: Aucun résultat. Utilisez « Ajouter personnalisé » ci-dessous.
+  add_custom: Ajouter un abonnement personnalisé
+  all_categories: Toutes
+form:
+  title_custom: Abonnement personnalisé
+  title_edit: Modifier l'abonnement
+  name: Nom
+  name_placeholder: Nom de l'abonnement
+  amount: Montant
+  cadence: Cycle de facturation
+  start_date: Date de début
+  category: Catégorie
+  status: Statut
+  notes: Notes
+  notes_placeholder: Optionnel
+  every: Tous les
+  unit:
+    day: jour(s)
+    week: semaine(s)
+    month: mois
+    year: année(s)
+cadence:
+  monthly: Mensuel
+  yearly: Annuel
+  weekly: Hebdomadaire
+  quarterly: Trimestriel
+  custom: Personnalisé
 not-found: Page non trouvée

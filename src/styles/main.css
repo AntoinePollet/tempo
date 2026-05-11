@@ -1,4 +1,48 @@
-@import './markdown.css';
+@import "tailwindcss";
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+@plugin "daisyui" {
+  themes: light --default, dark --prefersdark;
+}
+
+@plugin "daisyui/theme" {
+  name: "light";
+  default: true;
+  prefersdark: false;
+  --color-primary: #5E81AC;
+
+  --radius-selector: 1rem;
+  --radius-field: 1rem;
+  --radius-box: 1rem;
+  --size-selector: 0.1875rem;
+  --size-field: 0.25rem;
+  --border: 1.5px;
+  --depth: 0;
+  --noise: 0;
+}
+
+@plugin "daisyui/theme" {
+  name: "dark";
+  prefersdark: true;
+  --color-primary: #5E81AC;
+
+  --radius-selector: 1rem;
+  --radius-field: 1rem;
+  --radius-box: 1rem;
+  --size-selector: 0.1875rem;
+  --size-field: 0.25rem;
+  --border: 1.5px;
+  --depth: 0;
+  --noise: 0;
+}
+
+@plugin "@iconify/tailwind4";
+
+/* Catalog logo classes are embedded as literal strings in src/data/catalog.ts,
+ * which Tailwind v4 picks up via its source-file scanner — no safelist needed. */
+
+@import "./markdown.css";
 
 html,
 body,
@@ -8,17 +52,12 @@ body,
   padding: 0;
 }
 
-html.dark {
-  background: #121212;
-  color-scheme: dark;
-}
-
 #nprogress {
   pointer-events: none;
 }
 
 #nprogress .bar {
-  background: rgb(13, 148, 136);
+  background: #5E81AC;
   opacity: 0.75;
   position: fixed;
   z-index: 1031;

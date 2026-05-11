@@ -11,11 +11,20 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    README: typeof import('./components/README.md')['default']
+    CadencePicker: typeof import('./components/CadencePicker.vue')['default']
+    CatalogIcon: typeof import('./components/CatalogIcon.vue')['default']
+    CatalogPicker: typeof import('./components/CatalogPicker.vue')['default']
+    DueSoonBanner: typeof import('./components/DueSoonBanner.vue')['default']
+    FloatingAddButton: typeof import('./components/FloatingAddButton.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    TheCounter: typeof import('./components/TheCounter.vue')['default']
+    StatsDonut: typeof import('./components/StatsDonut.vue')['default']
+    StatsTop: typeof import('./components/StatsTop.vue')['default']
+    SubscriptionDetails: typeof import('./components/SubscriptionDetails.vue')['default']
+    SubscriptionForm: typeof import('./components/SubscriptionForm.vue')['default']
+    SubscriptionModal: typeof import('./components/SubscriptionModal.vue')['default']
+    SubscriptionRow: typeof import('./components/SubscriptionRow.vue')['default']
     TheFooter: typeof import('./components/TheFooter.vue')['default']
-    TheInput: typeof import('./components/TheInput.vue')['default']
+    UpdatePrompt: typeof import('./components/UpdatePrompt.vue')['default']
   }
 }

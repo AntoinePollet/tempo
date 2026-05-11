@@ -7,14 +7,14 @@ useHead({
 </script>
 
 <template>
-  <main p="x4 y10" text="center teal-700 dark:gray-200">
-    <div text-4xl>
-      <div i-carbon-warning inline-block />
+  <main class="px-4 py-10 text-center">
+    <div class="text-4xl">
+      <span class="icon-[carbon--warning] inline-block size-10" />
     </div>
     <RouterView />
     <div>
-      <button btn text-sm m="3 t8" @click="router.back()">
-        {{ t('button.back') }}
+      <button class="btn btn-primary btn-sm mt-8" @click="router.back()">
+        {{ t('action.back') }}
       </button>
     </div>
   </main>

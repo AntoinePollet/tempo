@@ -14,10 +14,14 @@ import type {
   ParamValueZeroOrMore,
   ParamValueZeroOrOne,
 } from 'vue-router'
+import type {
+  _ExtractParamParserType,
+} from 'vue-router/experimental'
 
 declare module 'vue-router' {
   interface TypesConfig {
-    ParamParsers: never
+    ParamParsers:
+      | never
   }
 }
 
@@ -40,23 +44,9 @@ declare module 'vue-router/auto-routes' {
       { all: ParamValue<false> },
       | never
     >,
-    '/about': RouteRecordInfo<
-      '/about',
-      '/about',
-      Record<never, never>,
-      Record<never, never>,
-      | never
-    >,
-    '/hi/[name]': RouteRecordInfo<
-      '/hi/[name]',
-      '/hi/:name',
-      { name: ParamValue<true> },
-      { name: ParamValue<false> },
-      | never
-    >,
-    '/README': RouteRecordInfo<
-      '/README',
-      '/README',
+    '/settings': RouteRecordInfo<
+      '/settings',
+      '/settings',
       Record<never, never>,
       Record<never, never>,
       | never
@@ -86,21 +76,9 @@ declare module 'vue-router/auto-routes' {
       views:
         | never
     }
-    'src/pages/about.md': {
+    'src/pages/settings.vue': {
       routes:
-        | '/about'
-      views:
-        | never
-    }
-    'src/pages/hi/[name].vue': {
-      routes:
-        | '/hi/[name]'
-      views:
-        | never
-    }
-    'src/pages/README.md': {
-      routes:
-        | '/README'
+        | '/settings'
       views:
         | never
     }
