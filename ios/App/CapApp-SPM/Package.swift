@@ -12,8 +12,9 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/ionic-team/capacitor-swift-pm.git", exact: "8.3.3"),
-        .package(name: "CapacitorPreferences", path: "../../../node_modules/.pnpm/@capacitor+preferences@8.0.1_@capacitor+core@8.3.3/node_modules/@capacitor/preferences"),
-        .package(name: "CapacitorPushNotifications", path: "../../../node_modules/.pnpm/@capacitor+push-notifications@8.0.4_@capacitor+core@8.3.3/node_modules/@capacitor/push-notifications")
+        .package(name: "CapacitorFirebaseApp", path: "../../../node_modules/.pnpm/@capacitor-firebase+app@8.2.0_@capacitor+core@8.3.3/node_modules/@capacitor-firebase/app"),
+        .package(name: "CapacitorFirebaseMessaging", path: "../../../node_modules/.pnpm/@capacitor-firebase+messaging@8.2.0_@capacitor+core@8.3.3/node_modules/@capacitor-firebase/messaging"),
+        .package(name: "CapacitorPreferences", path: "../../../node_modules/.pnpm/@capacitor+preferences@8.0.1_@capacitor+core@8.3.3/node_modules/@capacitor/preferences")
     ],
     targets: [
         .target(
@@ -21,8 +22,9 @@ let package = Package(
             dependencies: [
                 .product(name: "Capacitor", package: "capacitor-swift-pm"),
                 .product(name: "Cordova", package: "capacitor-swift-pm"),
-                .product(name: "CapacitorPreferences", package: "CapacitorPreferences"),
-                .product(name: "CapacitorPushNotifications", package: "CapacitorPushNotifications")
+                .product(name: "CapacitorFirebaseApp", package: "CapacitorFirebaseApp"),
+                .product(name: "CapacitorFirebaseMessaging", package: "CapacitorFirebaseMessaging"),
+                .product(name: "CapacitorPreferences", package: "CapacitorPreferences")
             ]
         )
     ]

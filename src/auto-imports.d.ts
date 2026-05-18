@@ -9,6 +9,7 @@ declare global {
   const EffectScope: typeof import('vue').EffectScope
   const asyncComputed: typeof import('@vueuse/core').asyncComputed
   const autoResetRef: typeof import('@vueuse/core').autoResetRef
+  const bootstrapPush: typeof import('./composables/tempoPush').bootstrapPush
   const computed: typeof import('vue').computed
   const computedAsync: typeof import('@vueuse/core').computedAsync
   const computedEager: typeof import('@vueuse/core').computedEager
@@ -26,6 +27,7 @@ declare global {
   const createSharedComposable: typeof import('@vueuse/core').createSharedComposable
   const createTemplatePromise: typeof import('@vueuse/core').createTemplatePromise
   const createUnrefFn: typeof import('@vueuse/core').createUnrefFn
+  const currentPlatform: typeof import('./composables/tempoIdentity').currentPlatform
   const customRef: typeof import('vue').customRef
   const debouncedRef: typeof import('@vueuse/core').debouncedRef
   const debouncedWatch: typeof import('@vueuse/core').debouncedWatch
@@ -34,10 +36,12 @@ declare global {
   const definePage: typeof import('vue-router/experimental').definePage
   const eagerComputed: typeof import('@vueuse/core').eagerComputed
   const effectScope: typeof import('vue').effectScope
+  const enableNotifications: typeof import('./composables/tempoPush').enableNotifications
   const extendRef: typeof import('@vueuse/core').extendRef
   const getCurrentInstance: typeof import('vue').getCurrentInstance
   const getCurrentScope: typeof import('vue').getCurrentScope
   const getCurrentWatcher: typeof import('vue').getCurrentWatcher
+  const getIdentity: typeof import('./composables/tempoIdentity').getIdentity
   const h: typeof import('vue').h
   const ignorableWatch: typeof import('@vueuse/core').ignorableWatch
   const inject: typeof import('vue').inject
@@ -45,6 +49,7 @@ declare global {
   const injectLocal: typeof import('@vueuse/core').injectLocal
   const isDark: typeof import('./composables/dark').isDark
   const isDefined: typeof import('@vueuse/core').isDefined
+  const isNativePlatform: typeof import('./composables/tempoIdentity').isNativePlatform
   const isProxy: typeof import('vue').isProxy
   const isReactive: typeof import('vue').isReactive
   const isReadonly: typeof import('vue').isReadonly
@@ -78,6 +83,7 @@ declare global {
   const preferredDark: typeof import('./composables/dark').preferredDark
   const provide: typeof import('vue').provide
   const provideLocal: typeof import('@vueuse/core').provideLocal
+  const pushState: typeof import('./composables/tempoPush').pushState
   const reactify: typeof import('@vueuse/core').reactify
   const reactifyObject: typeof import('@vueuse/core').reactifyObject
   const reactive: typeof import('vue').reactive
@@ -92,12 +98,15 @@ declare global {
   const refManualReset: typeof import('@vueuse/core').refManualReset
   const refThrottled: typeof import('@vueuse/core').refThrottled
   const refWithControl: typeof import('@vueuse/core').refWithControl
+  const resetIdentity: typeof import('./composables/tempoIdentity').resetIdentity
   const resolveComponent: typeof import('vue').resolveComponent
   const resolveRef: typeof import('@vueuse/core').resolveRef
   const resolveUnref: typeof import('@vueuse/core')['resolveUnref']
+  const setUserSecret: typeof import('./composables/tempoIdentity').setUserSecret
   const shallowReactive: typeof import('vue').shallowReactive
   const shallowReadonly: typeof import('vue').shallowReadonly
   const shallowRef: typeof import('vue').shallowRef
+  const startSyncDuesAutoPush: typeof import('./composables/tempoSync').startSyncDuesAutoPush
   const syncRef: typeof import('@vueuse/core').syncRef
   const syncRefs: typeof import('@vueuse/core').syncRefs
   const templateRef: typeof import('@vueuse/core').templateRef
@@ -329,6 +338,12 @@ declare global {
   export type { DueSoonItem } from './composables/dueSoon'
   import('./composables/dueSoon')
   // @ts-ignore
+  export type { TempoIdentity } from './composables/tempoIdentity'
+  import('./composables/tempoIdentity')
+  // @ts-ignore
+  export type { PermissionState, PushState } from './composables/tempoPush'
+  import('./composables/tempoPush')
+  // @ts-ignore
   export type { ModalMode, AddStep } from './stores/subscriptionModal'
   import('./stores/subscriptionModal')
 }
@@ -341,6 +356,7 @@ declare module 'vue' {
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
+    readonly bootstrapPush: UnwrapRef<typeof import('./composables/tempoPush')['bootstrapPush']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly computedAsync: UnwrapRef<typeof import('@vueuse/core')['computedAsync']>
     readonly computedEager: UnwrapRef<typeof import('@vueuse/core')['computedEager']>
@@ -358,6 +374,7 @@ declare module 'vue' {
     readonly createSharedComposable: UnwrapRef<typeof import('@vueuse/core')['createSharedComposable']>
     readonly createTemplatePromise: UnwrapRef<typeof import('@vueuse/core')['createTemplatePromise']>
     readonly createUnrefFn: UnwrapRef<typeof import('@vueuse/core')['createUnrefFn']>
+    readonly currentPlatform: UnwrapRef<typeof import('./composables/tempoIdentity')['currentPlatform']>
     readonly customRef: UnwrapRef<typeof import('vue')['customRef']>
     readonly debouncedRef: UnwrapRef<typeof import('@vueuse/core')['debouncedRef']>
     readonly debouncedWatch: UnwrapRef<typeof import('@vueuse/core')['debouncedWatch']>
@@ -366,10 +383,12 @@ declare module 'vue' {
     readonly definePage: UnwrapRef<typeof import('vue-router/experimental')['definePage']>
     readonly eagerComputed: UnwrapRef<typeof import('@vueuse/core')['eagerComputed']>
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
+    readonly enableNotifications: UnwrapRef<typeof import('./composables/tempoPush')['enableNotifications']>
     readonly extendRef: UnwrapRef<typeof import('@vueuse/core')['extendRef']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly getCurrentWatcher: UnwrapRef<typeof import('vue')['getCurrentWatcher']>
+    readonly getIdentity: UnwrapRef<typeof import('./composables/tempoIdentity')['getIdentity']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly ignorableWatch: UnwrapRef<typeof import('@vueuse/core')['ignorableWatch']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
@@ -377,6 +396,7 @@ declare module 'vue' {
     readonly injectLocal: UnwrapRef<typeof import('@vueuse/core')['injectLocal']>
     readonly isDark: UnwrapRef<typeof import('./composables/dark')['isDark']>
     readonly isDefined: UnwrapRef<typeof import('@vueuse/core')['isDefined']>
+    readonly isNativePlatform: UnwrapRef<typeof import('./composables/tempoIdentity')['isNativePlatform']>
     readonly isProxy: UnwrapRef<typeof import('vue')['isProxy']>
     readonly isReactive: UnwrapRef<typeof import('vue')['isReactive']>
     readonly isReadonly: UnwrapRef<typeof import('vue')['isReadonly']>
@@ -410,6 +430,7 @@ declare module 'vue' {
     readonly preferredDark: UnwrapRef<typeof import('./composables/dark')['preferredDark']>
     readonly provide: UnwrapRef<typeof import('vue')['provide']>
     readonly provideLocal: UnwrapRef<typeof import('@vueuse/core')['provideLocal']>
+    readonly pushState: UnwrapRef<typeof import('./composables/tempoPush')['pushState']>
     readonly reactify: UnwrapRef<typeof import('@vueuse/core')['reactify']>
     readonly reactifyObject: UnwrapRef<typeof import('@vueuse/core')['reactifyObject']>
     readonly reactive: UnwrapRef<typeof import('vue')['reactive']>
@@ -424,11 +445,14 @@ declare module 'vue' {
     readonly refManualReset: UnwrapRef<typeof import('@vueuse/core')['refManualReset']>
     readonly refThrottled: UnwrapRef<typeof import('@vueuse/core')['refThrottled']>
     readonly refWithControl: UnwrapRef<typeof import('@vueuse/core')['refWithControl']>
+    readonly resetIdentity: UnwrapRef<typeof import('./composables/tempoIdentity')['resetIdentity']>
     readonly resolveComponent: UnwrapRef<typeof import('vue')['resolveComponent']>
     readonly resolveRef: UnwrapRef<typeof import('@vueuse/core')['resolveRef']>
+    readonly setUserSecret: UnwrapRef<typeof import('./composables/tempoIdentity')['setUserSecret']>
     readonly shallowReactive: UnwrapRef<typeof import('vue')['shallowReactive']>
     readonly shallowReadonly: UnwrapRef<typeof import('vue')['shallowReadonly']>
     readonly shallowRef: UnwrapRef<typeof import('vue')['shallowRef']>
+    readonly startSyncDuesAutoPush: UnwrapRef<typeof import('./composables/tempoSync')['startSyncDuesAutoPush']>
     readonly syncRef: UnwrapRef<typeof import('@vueuse/core')['syncRef']>
     readonly syncRefs: UnwrapRef<typeof import('@vueuse/core')['syncRefs']>
     readonly templateRef: UnwrapRef<typeof import('@vueuse/core')['templateRef']>

@@ -1,8 +1,8 @@
 import type { Subscription } from './schemas'
 import { cadenceToRrule } from './cadence'
 
-const APP_DOMAIN = 'recur.app'
-const PRODID = '-//Recur//Recurring Spending Tracker//EN'
+const APP_DOMAIN = 'tempo.app'
+const PRODID = '-//Tempo//Recurring Spending Tracker//EN'
 
 function toIcsDate(isoYmd: string): string {
   return isoYmd.replaceAll('-', '')

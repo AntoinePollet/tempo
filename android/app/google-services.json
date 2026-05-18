@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "837209752497",
+    "project_id": "tempo-9a626",
+    "storage_bucket": "tempo-9a626.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:837209752497:android:92a77b04ec0bbd6b153390",
+        "android_client_info": {
+          "package_name": "com.polletantoine.tempo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfEqJFjzobc8_ZMyltBwZA1hooGRTi3lU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

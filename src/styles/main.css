@@ -1,16 +1,18 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 @plugin "daisyui" {
-  themes: light --default, dark --prefersdark;
+  themes:
+    light --default,
+    dark --prefersdark;
 }
 
 @plugin "daisyui/theme" {
-  name: "light";
+  name: 'light';
   default: true;
   prefersdark: false;
-  --color-primary: #5E81AC;
+  --color-primary: #5e81ac;
 
   --radius-selector: 1rem;
   --radius-field: 1rem;
@@ -23,9 +25,9 @@
 }
 
 @plugin "daisyui/theme" {
-  name: "dark";
+  name: 'dark';
   prefersdark: true;
-  --color-primary: #5E81AC;
+  --color-primary: #5e81ac;
 
   --radius-selector: 1rem;
   --radius-field: 1rem;
@@ -42,7 +44,7 @@
 /* Catalog logo classes are embedded as literal strings in src/data/catalog.ts,
  * which Tailwind v4 picks up via its source-file scanner — no safelist needed. */
 
-@import "./markdown.css";
+@import './markdown.css';
 
 html,
 body,
@@ -57,7 +59,7 @@ body,
 }
 
 #nprogress .bar {
-  background: #5E81AC;
+  background: #5e81ac;
   opacity: 0.75;
   position: fixed;
   z-index: 1031;
@@ -65,4 +67,23 @@ body,
   left: 0;
   width: 100%;
   height: 2px;
+}
+
+.input:focus,
+.input:focus-within,
+.input:focus-visible,
+.textarea:focus,
+.textarea:focus-visible,
+.select:focus,
+.select:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+/* Capacitor iOS — respect device safe areas (notch / Dynamic Island / home indicator) */
+.safe-top {
+  padding-top: env(safe-area-inset-top);
+}
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
 }

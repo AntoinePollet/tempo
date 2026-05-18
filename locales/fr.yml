@@ -1,5 +1,5 @@
 app:
-  name: Recur
+  name: Tempo
   tagline: Suivez vos dépenses récurrentes
 action:
   back: Retour
@@ -16,20 +16,20 @@ action:
   cancel_subscription: Annuler l'abonnement
 confirm:
   delete_title: Supprimer cet abonnement ?
-  delete_body: "{name} sera définitivement supprimé. Cette action est irréversible."
+  delete_body: '{name} sera définitivement supprimé. Cette action est irréversible.'
 detail:
   next_due_dates: Prochaines échéances
   next_label: Prochaine
   total_paid_label: Total payé approximatif
-  over_n_months: "sur {n} mois | sur {n} mois"
+  over_n_months: 'sur {n} mois | sur {n} mois'
 home:
   rollup_per_month: par mois
   rollup_per_year: par an
   empty_title: Aucun abonnement
   empty_subtitle: Ajoutez votre premier abonnement pour commencer.
   quick_add: Ajout rapide
-  due_soon_count: "{count} abonnement bientôt dû | {count} abonnements bientôt dus"
-  due_in_days: "dans {n} jour | dans {n} jours"
+  due_soon_count: '{count} abonnement bientôt dû | {count} abonnements bientôt dus'
+  due_in_days: 'dans {n} jour | dans {n} jours'
   due_today: dû aujourd'hui
   due_tomorrow: dû demain
   banner_dismiss: Masquer jusqu'à demain
@@ -37,7 +37,7 @@ home:
   hide_details: Masquer les détails
   per_month_short: /mois
 install:
-  prompt: Installer Recur
+  prompt: Installer Tempo
   hint: Installez l'application pour un accès hors-ligne depuis votre écran d'accueil.
 pwa:
   update_available: Nouvelle version disponible
@@ -52,7 +52,7 @@ stats:
 row:
   due_today: Aujourd'hui
   due_tomorrow: Demain
-  due_in_days: "Dans {n} jour | Dans {n} jours"
+  due_in_days: 'Dans {n} jour | Dans {n} jours'
 backup:
   export: Télécharger une sauvegarde
   export_hint: Enregistre un fichier JSON contenant tous vos abonnements et préférences.
@@ -68,7 +68,7 @@ calendar:
   remove_all: Supprimer du calendrier
   remove_all_hint: Génère un fichier de suppression. Importez-le dans la même application de calendrier que celle utilisée à l'ajout.
   confirm_remove_title: Générer le fichier de suppression ?
-  confirm_remove_body: Cela télécharge un fichier .ics qui, une fois importé dans votre application de calendrier, supprime les événements ajoutés par Recur. Importez-le dans chaque calendrier où vous les avez ajoutés.
+  confirm_remove_body: Cela télécharge un fichier .ics qui, une fois importé dans votre application de calendrier, supprime les événements ajoutés par Tempo. Importez-le dans chaque calendrier où vous les avez ajoutés.
 settings:
   title: Paramètres
   preferred_currency: Devise préférée
@@ -76,15 +76,22 @@ settings:
   language: Langue
   banner_threshold: Fenêtre d'alerte
   banner_threshold_hint: Afficher les abonnements dus dans ce nombre de jours.
-  banner_threshold_days: "{n} jours"
+  banner_threshold_days: '{n} jours'
   show_cancelled: Afficher les abonnements annulés
   appearance: Apparence
   data_section: Données
   calendar_section: Calendrier
   about: À propos
-  app_version: "Version {version}"
+  app_version: 'Version {version}'
   currency_change_title: Changer la devise préférée ?
   currency_change_body: Les montants enregistrés ne seront pas convertis. Les abonnements existants gardent leur valeur numérique mais s'afficheront avec la nouvelle devise. Cela peut ne pas correspondre à ce que vous payez réellement.
+  push_section: Notifications push
+  push_hint: Tempo enverra une notification quelques jours avant chaque prélèvement. App native uniquement.
+  push_enable: Activer les notifications
+  push_status_enabled: Notifications activées
+  push_status_denied: Permission refusée — activez Tempo dans les réglages système de votre téléphone.
+  push_status_unavailable: Disponible uniquement dans l'app iOS ou Android.
+  push_error: 'Erreur : {message}'
 status:
   active: Actif
   paused: En pause

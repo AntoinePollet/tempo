@@ -57,7 +57,7 @@ export const useSubscriptionsStore = defineStore('subscriptions', () => {
   return { items, active, visible, add, update, remove, getById, replaceAll }
 }, {
   persist: {
-    key: 'recur:subscriptions',
+    key: 'tempo:subscriptions',
   },
 })
 

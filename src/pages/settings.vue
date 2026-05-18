@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type { BannerThreshold, ExportEnvelope } from '~/lib/schemas'
 import { useInstallPrompt } from '~/composables/install'
+import { isNativePlatform } from '~/composables/tempoIdentity'
+import { enableNotifications, pushState } from '~/composables/tempoPush'
 import { COMMON_CURRENCIES } from '~/data/currencies'
 import { APP_VERSION, backupFilename, buildExportEnvelope } from '~/lib/backup'
 import { downloadText } from '~/lib/download'
@@ -51,6 +53,13 @@ function cancelCurrencyChange() {
 const bannerOptions: BannerThreshold[] = [3, 7, 14]
 const { isInstallable, promptInstall } = useInstallPrompt()
 
+// Set client-side only to avoid SSG hydration mismatch:
+// on SSG we always render "unavailable", then flip on the native client.
+const pushNative = ref(false)
+onMounted(() => {
+  pushNative.value = isNativePlatform()
+})
+
 async function setLanguage(lang: 'en' | 'fr') {
   settings.setLanguage(lang)
   await loadLanguageAsync(lang)
@@ -71,7 +80,7 @@ function exportAllToCalendar() {
   if (!hasExportable.value)
     return
   const ics = buildBulkIcs(exportableSubs.value, { currency: settings.preferredCurrency })
-  downloadText('recur-subscriptions.ics', ics)
+  downloadText('tempo-subscriptions.ics', ics)
   settings.recordExportedUids(exportableSubs.value.map(uidForSubscription))
 }
 
@@ -88,7 +97,7 @@ function executeRemoveAll() {
     return
   }
   const ics = buildCancelIcs(uids, { currency: settings.preferredCurrency })
-  downloadText('recur-remove-from-calendar.ics', ics)
+  downloadText('tempo-remove-from-calendar.ics', ics)
   settings.clearExportedUids()
   removeCalendarDialog.value?.close()
 }
@@ -100,7 +109,7 @@ function cancelRemove() {
 function exportBackup() {
   const envelope = buildExportEnvelope(subs.items, settings.snapshot())
   downloadText(
-    backupFilename('recur-backup'),
+    backupFilename('tempo-backup'),
     JSON.stringify(envelope, null, 2),
     'application/json',
   )
@@ -146,7 +155,7 @@ function confirmRestore() {
   }
   const safety = buildExportEnvelope(subs.items, settings.snapshot())
   downloadText(
-    backupFilename('recur-safety'),
+    backupFilename('tempo-safety'),
     JSON.stringify(safety, null, 2),
     'application/json',
   )
@@ -187,8 +196,12 @@ function confirmRestore() {
             :value="settings.language"
             @change="setLanguage(($event.target as HTMLSelectElement).value as 'en' | 'fr')"
           >
-            <option value="en">English</option>
-            <option value="fr">Français</option>
+            <option value="en">
+              English
+            </option>
+            <option value="fr">
+              Français
+            </option>
           </select>
         </div>
 
@@ -204,6 +217,48 @@ function confirmRestore() {
             {{ t('install.hint') }}
           </p>
         </div>
+      </div>
+    </section>
+
+    <section class="card bg-base-100 border border-base-300">
+      <div class="card-body gap-3">
+        <h2 class="card-title text-base">
+          {{ t('settings.push_section') }}
+        </h2>
+        <p class="text-xs opacity-70">
+          {{ t('settings.push_hint') }}
+        </p>
+
+        <div v-if="!pushNative" class="text-sm opacity-70">
+          {{ t('settings.push_status_unavailable') }}
+        </div>
+
+        <template v-else>
+          <button
+            v-if="pushState.permission !== 'granted' || !pushState.registered"
+            class="btn btn-primary gap-2 w-full justify-start"
+            :disabled="pushState.permission === 'denied'"
+            @click="enableNotifications"
+          >
+            <span class="icon-[carbon--notification] size-5" />
+            <span class="flex-1 text-left">{{ t('settings.push_enable') }}</span>
+          </button>
+
+          <div
+            v-else
+            class="flex items-center gap-2 text-success text-sm font-medium"
+          >
+            <span class="icon-[carbon--checkmark-filled] size-5" />
+            {{ t('settings.push_status_enabled') }}
+          </div>
+
+          <p v-if="pushState.permission === 'denied'" class="text-xs text-error">
+            {{ t('settings.push_status_denied') }}
+          </p>
+          <p v-if="pushState.error" class="text-xs text-error">
+            {{ t('settings.push_error', { message: pushState.error }) }}
+          </p>
+        </template>
       </div>
     </section>
 
@@ -370,7 +425,9 @@ function confirmRestore() {
         </div>
       </div>
       <form method="dialog" class="modal-backdrop">
-        <button @click="cancelCurrencyChange">close</button>
+        <button @click="cancelCurrencyChange">
+          close
+        </button>
       </form>
     </dialog>
 
@@ -392,7 +449,9 @@ function confirmRestore() {
         </div>
       </div>
       <form method="dialog" class="modal-backdrop">
-        <button @click="cancelRestore">close</button>
+        <button @click="cancelRestore">
+          close
+        </button>
       </form>
     </dialog>
 
@@ -414,7 +473,9 @@ function confirmRestore() {
         </div>
       </div>
       <form method="dialog" class="modal-backdrop">
-        <button @click="cancelRemove">close</button>
+        <button @click="cancelRemove">
+          close
+        </button>
       </form>
     </dialog>
   </div>

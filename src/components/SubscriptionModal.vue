@@ -99,8 +99,8 @@ const formInstanceKey = computed(() =>
         />
       </div>
 
-      <div v-else-if="showForm && modal.isOpen" :key="formInstanceKey" class="flex flex-col gap-4 min-h-0 flex-1 overflow-y-auto">
-        <div class="flex items-center gap-2">
+      <template v-else-if="showForm && modal.isOpen">
+        <div class="flex items-center gap-2 shrink-0 pb-3">
           <button
             v-if="showBackButton"
             type="button"
@@ -114,21 +114,23 @@ const formInstanceKey = computed(() =>
             {{ headerTitle }}
           </h3>
         </div>
-        <SubscriptionForm
-          :catalog-entry="modal.selectedCatalog"
-          :initial="modal.editTarget"
-          :submit-label="modal.mode === 'edit' ? t('action.save') : t('action.add')"
-          @submit="onSubmit"
-          @cancel="modal.close()"
-          @toggle-pause="onTogglePause"
-          @cancel-subscription="onCancelSubscription"
-          @delete="onDeleteRequest"
-        />
-        <SubscriptionDetails
-          v-if="modal.mode === 'edit' && modal.editTarget"
-          :sub="modal.editTarget"
-        />
-      </div>
+        <div :key="formInstanceKey" class="flex flex-col gap-4 min-h-0 flex-1 overflow-x-hidden overflow-y-auto">
+          <SubscriptionForm
+            :catalog-entry="modal.selectedCatalog"
+            :initial="modal.editTarget"
+            :submit-label="modal.mode === 'edit' ? t('action.save') : t('action.add')"
+            @submit="onSubmit"
+            @cancel="modal.close()"
+            @toggle-pause="onTogglePause"
+            @cancel-subscription="onCancelSubscription"
+            @delete="onDeleteRequest"
+          />
+          <SubscriptionDetails
+            v-if="modal.mode === 'edit' && modal.editTarget"
+            :sub="modal.editTarget"
+          />
+        </div>
+      </template>
     </div>
     <form method="dialog" class="modal-backdrop">
       <button>close</button>

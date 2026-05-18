@@ -1,5 +1,5 @@
-import { buildBulkIcs, buildCancelIcs, buildSubscriptionIcs, uidForSubscription } from '~/lib/ics'
 import { describe, expect, it } from 'vitest'
+import { buildBulkIcs, buildCancelIcs, buildSubscriptionIcs, uidForSubscription } from '~/lib/ics'
 import { biweeklyCleaner, domainYearly, netflixMonthly } from './fixtures/subscriptions'
 
 const FIXED_NOW = new Date('2026-05-10T12:00:00Z')
@@ -19,7 +19,7 @@ describe('buildSubscriptionIcs', () => {
   it('uses the subscription id for UID and includes domain', () => {
     const ics = buildSubscriptionIcs(netflixMonthly, { currency: 'EUR', now: FIXED_NOW })
     expect(ics).toContain(`UID:${uidForSubscription(netflixMonthly)}`)
-    expect(ics).toContain('@recur.app')
+    expect(ics).toContain('@tempo.app')
   })
 
   it('emits DTSTART as a date-only with VALUE=DATE', () => {

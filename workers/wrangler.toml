@@ -1,0 +1,38 @@
+name = "tempo-api"
+main = "src/index.ts"
+compatibility_date = "2026-05-01"
+
+# Worker URL en attendant le domaine custom : tempo-api.<account>.workers.dev
+# Pour activer api.polletantoine.com plus tard, décommente le bloc routes ci-dessous
+# (suppose que polletantoine.com est dans ta zone Cloudflare).
+# routes = [
+#   { pattern = "api.polletantoine.com/*", custom_domain = true }
+# ]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "tempo-prod"
+database_id = "329c936b-abf6-473f-bf5b-13c1373cec00"
+
+[triggers]
+crons = [ "0 * * * *" ]
+
+[vars]
+FCM_PROJECT_ID = "tempo-9a626"
+
+# Rate limit bindings — keyed by IP. Limits are per Cloudflare PoP, not global,
+# but tight enough for our use case.
+[[unsafe.bindings]]
+name = "RL_REGISTER"
+type = "ratelimit"
+namespace_id = "1001"
+simple = { limit = 10, period = 60 }
+
+[[unsafe.bindings]]
+name = "RL_API"
+type = "ratelimit"
+namespace_id = "1002"
+simple = { limit = 60, period = 60 }
+
+# Secrets (à set via : pnpm worker:secret FCM_SERVICE_ACCOUNT)
+# - FCM_SERVICE_ACCOUNT : contenu JSON du service account Firebase (chaîne brute)

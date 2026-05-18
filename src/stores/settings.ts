@@ -76,7 +76,7 @@ export const useSettingsStore = defineStore('settings', () => {
   }
 }, {
   persist: {
-    key: 'recur:settings',
+    key: 'tempo:settings',
   },
 })
 

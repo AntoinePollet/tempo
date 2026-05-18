@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import type { z } from 'zod'
 import type { CatalogEntry } from '~/data/catalog'
 import type { Cadence, Subscription, SubscriptionInput, SubscriptionStatus } from '~/lib/schemas'
-import { z } from 'zod'
 import { CATEGORIES } from '~/data/categories'
 import { subscriptionInputSchema } from '~/lib/schemas'
 import { useSettingsStore } from '~/stores/settings'
@@ -166,9 +166,15 @@ function onSubmit(event: Event) {
     <div class="flex flex-col gap-1.5">
       <label for="sub-status" class="text-sm font-medium">{{ t('form.status') }}</label>
       <select id="sub-status" v-model="status" class="select select-bordered w-full">
-        <option value="active">{{ t('status.active') }}</option>
-        <option value="paused">{{ t('status.paused') }}</option>
-        <option value="cancelled">{{ t('status.cancelled') }}</option>
+        <option value="active">
+          {{ t('status.active') }}
+        </option>
+        <option value="paused">
+          {{ t('status.paused') }}
+        </option>
+        <option value="cancelled">
+          {{ t('status.cancelled') }}
+        </option>
       </select>
     </div>
 
@@ -184,7 +190,7 @@ function onSubmit(event: Event) {
       />
     </div>
 
-    <div class="flex justify-end gap-2 pt-2">
+    <div class="sticky bottom-0 -mx-6 flex justify-end gap-2 border-t border-base-300 bg-base-100 px-6 py-3">
       <button type="button" class="btn btn-ghost" @click="emit('cancel')">
         {{ t('action.cancel') }}
       </button>

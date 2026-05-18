@@ -1,3 +1,4 @@
+import { readdirSync, readFileSync, writeFileSync } from 'node:fs'
 import path from 'node:path'
 import VueI18n from '@intlify/unplugin-vue-i18n/vite'
 import Shiki from '@shikijs/markdown-it'
@@ -22,6 +23,9 @@ export default defineConfig({
   resolve: {
     alias: {
       '~/': `${path.resolve(__dirname, 'src')}/`,
+      // Stub firebase/messaging — we only target native push, never web Firebase.
+      // See src/lib/firebase-messaging-stub.ts for context.
+      'firebase/messaging': path.resolve(__dirname, 'src/lib/firebase-messaging-stub.ts'),
     },
   },
 
@@ -164,6 +168,11 @@ export default defineConfig({
     },
     onFinished() {
       generateSitemap()
+      // Beasties strips `viewport-fit=cover` during HTML minification, which
+      // breaks `env(safe-area-inset-*)` on iOS Capacitor builds (WKWebView
+      // reads viewport only at page load — runtime DOM patches are too late).
+      // We patch every generated HTML file on disk after SSG completes.
+      patchViewportInDist('dist')
     },
   },
 
@@ -172,3 +181,21 @@ export default defineConfig({
     noExternal: ['workbox-window', /vue-i18n/],
   },
 })
+
+function patchViewportInDist(dir: string) {
+  const viewportRegex = /<meta\s+name="viewport"\s+content="[^"]*"\s*\/?>/i
+  const replacement = '<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">'
+
+  for (const entry of readdirSync(dir, { withFileTypes: true })) {
+    const full = path.join(dir, entry.name)
+    if (entry.isDirectory()) {
+      patchViewportInDist(full)
+    }
+    else if (entry.name.endsWith('.html')) {
+      const html = readFileSync(full, 'utf-8')
+      const patched = html.replace(viewportRegex, replacement)
+      if (patched !== html)
+        writeFileSync(full, patched)
+    }
+  }
+}

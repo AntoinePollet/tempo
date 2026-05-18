@@ -1,5 +1,5 @@
 app:
-  name: Recur
+  name: Tempo
   tagline: Track your recurring spending
 action:
   back: Back
@@ -16,20 +16,20 @@ action:
   cancel_subscription: Cancel subscription
 confirm:
   delete_title: Delete this subscription?
-  delete_body: "{name} will be permanently deleted. This cannot be undone."
+  delete_body: '{name} will be permanently deleted. This cannot be undone.'
 detail:
   next_due_dates: Next due dates
   next_label: Next
   total_paid_label: Approximate total paid
-  over_n_months: "over {n} month | over {n} months"
+  over_n_months: 'over {n} month | over {n} months'
 home:
   rollup_per_month: per month
   rollup_per_year: per year
   empty_title: No subscriptions yet
   empty_subtitle: Add your first subscription to get started.
   quick_add: Quick add
-  due_soon_count: "{count} subscription due soon | {count} subscriptions due soon"
-  due_in_days: "due in {n} day | due in {n} days"
+  due_soon_count: '{count} subscription due soon | {count} subscriptions due soon'
+  due_in_days: 'due in {n} day | due in {n} days'
   due_today: due today
   due_tomorrow: due tomorrow
   banner_dismiss: Dismiss until tomorrow
@@ -37,7 +37,7 @@ home:
   hide_details: Hide details
   per_month_short: /mo
 install:
-  prompt: Install Recur
+  prompt: Install Tempo
   hint: Install the app for offline access from your home screen.
 pwa:
   update_available: New version available
@@ -52,7 +52,7 @@ stats:
 row:
   due_today: Today
   due_tomorrow: Tomorrow
-  due_in_days: "In {n} day | In {n} days"
+  due_in_days: 'In {n} day | In {n} days'
 backup:
   export: Download backup
   export_hint: Saves a JSON file with all your subscriptions and preferences.
@@ -68,7 +68,7 @@ calendar:
   remove_all: Remove from calendar
   remove_all_hint: Generates a removal file. Import it in the same calendar app you used to add the events.
   confirm_remove_title: Generate calendar removal file?
-  confirm_remove_body: This downloads an .ics file that, when imported in your calendar app, removes the events Recur added. You'll need to import it in each calendar where you added them.
+  confirm_remove_body: This downloads an .ics file that, when imported in your calendar app, removes the events Tempo added. You'll need to import it in each calendar where you added them.
 settings:
   title: Settings
   preferred_currency: Preferred currency
@@ -76,15 +76,22 @@ settings:
   language: Language
   banner_threshold: Due-soon window
   banner_threshold_hint: Show subscriptions due within this many days.
-  banner_threshold_days: "{n} days"
+  banner_threshold_days: '{n} days'
   show_cancelled: Show cancelled subscriptions
   appearance: Appearance
   data_section: Data
   calendar_section: Calendar
   about: About
-  app_version: "Version {version}"
+  app_version: 'Version {version}'
   currency_change_title: Change preferred currency?
   currency_change_body: Stored amounts will not be converted. Existing subscriptions keep their numeric value but will display under the new currency. This may not match what you actually pay.
+  push_section: Push notifications
+  push_hint: Tempo will send a notification a few days before each recurring charge. Native app only.
+  push_enable: Enable notifications
+  push_status_enabled: Notifications enabled
+  push_status_denied: Permission denied — enable Tempo in your phone's system settings.
+  push_status_unavailable: Available only in the iOS or Android app.
+  push_error: 'Error: {message}'
 status:
   active: Active
   paused: Paused

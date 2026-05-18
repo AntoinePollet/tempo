@@ -3,7 +3,7 @@ const { t } = useI18n()
 </script>
 
 <template>
-  <header class="sticky top-0 z-10 border-b border-base-300 bg-base-100/80 backdrop-blur">
+  <header class="safe-top sticky top-0 z-10 border-b border-base-300 bg-base-100/80 backdrop-blur">
     <div class="mx-auto flex max-w-2xl items-center justify-between px-4 py-3">
       <RouterLink to="/" class="text-lg font-semibold">
         {{ t('app.name') }}

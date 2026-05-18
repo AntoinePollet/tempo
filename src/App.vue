@@ -1,6 +1,6 @@
 <script setup lang="ts">
 useHead({
-  title: 'Recur',
+  title: 'Tempo',
   meta: [
     {
       name: 'description',
